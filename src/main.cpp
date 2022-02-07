@@ -90,6 +90,10 @@ void AllocDeallocMismatch() {
     ::free(new std::string(__PRETTY_FUNCTION__));
 }
 
+int global_array[100] = {-1};
+void GlobalBufferOverflow() {
+  return global_array[argc + 100];
+}
 
 
 int main(int argc, char **argv) {
@@ -106,6 +110,7 @@ int main(int argc, char **argv) {
         {"stack-use-after-scope",   StackUseAfterScope},
         {"vector-overflow",         VectorOverflow},
         {"alloc-dealloc-mismatch",  AllocDeallocMismatch},
+        {"global-buffer-overflow",  GlobalBufferOverflow},
     };
 
     auto print_help = [&] () {
